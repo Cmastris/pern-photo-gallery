@@ -1,0 +1,27 @@
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table photos {
+  id serial [pk, increment]
+  title varchar(100) [not null]
+  slug varchar(50) [not null, unique]
+  summary_text varchar(200) [not null]
+  detail_text varchar(1000)
+  location varchar(80)
+  date_taken date
+  filename varchar(80) [not null]
+}
+
+Table collections {
+  id serial [pk, increment]
+  name varchar [not null]
+  slug varchar [not null, unique]
+  description varchar(200)
+}
+
+Table photo_collections {
+  photo_id integer [ref: > photos.id]
+  collection_id integer [ref: > collections.id]
+  indexes {
+  (photo_id, collection_id) [pk]
+  }
+}
