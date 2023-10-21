@@ -4,7 +4,7 @@
   "description": "The back-end of a Codecademy independent practice project to build a PERN app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand"
   },
   "author": "Chris Mastris",
   "license": "ISC",
@@ -13,5 +13,9 @@
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   }
 }

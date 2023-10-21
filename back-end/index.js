@@ -11,6 +11,11 @@ api.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-api.listen(port, () => {
+const server = api.listen(port, () => {
   console.log(`Server listening on port ${port} in the ${process.env.NODE_ENV} environment.`);
 });
+
+module.exports = {
+  api,
+  server
+};
