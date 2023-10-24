@@ -1,5 +1,6 @@
 const pg = require("pg");
 
+// https://node-postgres.com/features/connecting
 const pool = new pg.Pool();
 
 // https://node-postgres.com/features/pooling#single-query
