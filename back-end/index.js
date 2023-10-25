@@ -9,7 +9,11 @@ const photosRouter = require("./routes/photos");
 const api = express();
 const port = process.env.PORT;
 
-api.use(logging(process.env.LOGGING));
+// https://expressjs.com/en/resources/middleware/morgan.html
+api.use(logging(
+  process.env.LOGGING,
+  { skip: () => process.env.NODE_ENV === "test" }
+));
 
 // https://expressjs.com/en/resources/middleware/cors.html
 api.use(cors({
