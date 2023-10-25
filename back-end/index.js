@@ -3,6 +3,7 @@ const cors = require("cors");
 const express = require("express");
 const logging = require("morgan");
 
+const collectionsRouter = require("./routes/collections");
 const photosRouter = require("./routes/photos");
 
 const api = express();
@@ -15,6 +16,7 @@ api.use(cors({
   origin: "http://localhost:3000",  // Change in PROD
 }));
 
+api.use("/collections", collectionsRouter);
 api.use("/photos", photosRouter);
 
 const server = api.listen(port, () => {
