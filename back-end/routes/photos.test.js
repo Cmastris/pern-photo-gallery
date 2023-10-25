@@ -44,6 +44,27 @@ test("GET /photos JSON photo objects have the correct attributes", async () => {
   expect(Object.keys(data[5])).toStrictEqual(expectedAttributes);
 });
 
+
+test("GET /photos/:id with a valid ID returns a 200 status JSON response", async () => {
+  const res = await request(api).get("/photos/3");
+  expect(res.statusCode).toBe(200);
+  expect(res.headers["content-type"]).toMatch(/json/);
+});
+
+test("GET /photos/:id JSON photo objects have the correct attributes", async () => {
+  const res = await request(api).get("/photos/3");
+  const data = JSON.parse(res.text);
+
+  const expectedAttributes = ["id", "title", "slug", "summary_text", "detail_text", "location", "date_taken", "filename"];
+  expect(Object.keys(data)).toStrictEqual(expectedAttributes);
+});
+
+test("GET /photos/:id with a non-existent ID returns a 404 status code", async () => {
+  const res = await request(api).get("/photos/999");
+  expect(res.statusCode).toBe(404);
+});
+
+
 afterAll(() => {
   // https://stackoverflow.com/q/8659011/11262798
   server.close();

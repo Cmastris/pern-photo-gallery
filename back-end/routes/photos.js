@@ -12,4 +12,16 @@ router.get("", async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    photoData = await db.getPhotoById(req.params.id);
+    if (!photoData) {
+      return res.status(404).send(`A photo with the ID '${req.params.id}' does not exist.`);
+    }
+    res.status(200).json(photoData);
+  } catch(err) {
+    res.status(500).send("Sorry, this photo could not be retrieved.");
+  }
+});
+
 module.exports = router;
