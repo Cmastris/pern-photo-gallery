@@ -31,6 +31,27 @@ test("GET /collections/:slug with a non-existent slug returns a 404 status code"
 });
 
 
+test("GET /collections?photo_id returns a 200 status JSON response", async () => {
+  const res = await request(api).get("/collections?photo_id=3");
+  expect(res.statusCode).toBe(200);
+  expect(res.headers["content-type"]).toMatch(/json/);
+});
+
+test("GET /collections?photo_id returns all collections associated with a photo", async () => {
+  const res = await request(api).get("/collections?photo_id=6");
+  const data = JSON.parse(res.text);
+  expect(data.length).toBe(2);  // Landscapes and waterscapes
+});
+
+test("GET /collections?photo_id JSON objects have the correct attributes", async () => {
+  const res = await request(api).get("/collections?photo_id=6");
+  const data = JSON.parse(res.text);
+
+  const expectedAttributes = ["id", "name", "slug", "description"];
+  expect(Object.keys(data[0])).toStrictEqual(expectedAttributes);
+});
+
+
 afterAll(() => {
   // https://stackoverflow.com/q/8659011/11262798
   server.close();

@@ -3,6 +3,15 @@ const db = require("../db/index");
 
 const router = express.Router();
 
+router.get("", async (req, res) => {
+  try {
+    const collectionsData = await db.getPhotoCollections(req.query.photo_id);
+    res.json(collectionsData);
+  } catch (err) {
+    res.status(500).send("Sorry, collection data could not be retrieved.");
+  }
+});
+
 router.get("/:slug", async (req, res) => {
   try {
     const collectionData = await db.getCollectionBySlug(req.params.slug);
