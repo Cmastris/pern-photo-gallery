@@ -34,9 +34,18 @@ const getCollectionBySlug = async (slug) => {
   return res.rows[0];
 };
 
+const getPhotoCollections = async (photo_id) => {
+  const select = "SELECT id, name, slug, description FROM collections";
+  const join = "JOIN photo_collections ON collections.id = photo_collections.collection_id";
+  const where = "WHERE photo_collections.photo_id=$1";
+  res = await query(`${select} ${join} ${where}`, [photo_id]);
+  return res.rows;
+};
+
 
 module.exports = {
   getPhotos,
   getPhotoById,
   getCollectionBySlug,
+  getPhotoCollections,
 };
