@@ -2,22 +2,44 @@ import { Link, useRouteError } from "react-router-dom";
 import Header from "../Header/Header";
 
 export default function FallbackErrorPage() {
+  // https://reactrouter.com/en/main/route/error-element
 
-  const error = useRouteError();
-  const is404 = error.status === 404;
+  function renderHeadingText(err) {
+    if (err.status && err.status !== 200) {
+      return err.statusText ? `${err.status} (${err.statusText})` : err.status;
+    }
+    return "Oops!";
+  }
 
-  return (
-    <>
+  try {
+    const error = useRouteError();
+    const { status, statusText, message } = error;
+    const is404 = status === 404;
+
+    return (
+      <>
+        <Header />
+        <main>
+          <h1>{renderHeadingText(error)}</h1>
+          <p>{is404 ? "Sorry, this page does not exist." : "Sorry, an error has occurred."}</p>
+          {!is404 ?
+          <em>
+            <p>{statusText}</p>
+            <p>{message}</p>
+          </em>
+          : null }
+          <hr></hr>
+          <Link to="/">Visit the homepage</Link>
+        </main>
+      </>
+    );
+
+  } catch (err) {
+    return (
       <main>
-        {is404 ? <Header /> : null}
-        <h1>{is404 ? "404 (Not Found)" : "Oops!"}</h1>
-        <p>{is404 ? "Sorry, this page does not exist." : "Sorry, an unexpected error has occurred."}</p>
-        <p>
-          <em>{error.statusText || error.message}</em>
-        </p>
-        <hr></hr>
-        <Link to="/">Visit the homepage</Link>
+        <h1>Oops!</h1>
+        <p>Sorry, an unexpected error has occurred. Please try again later.</p>
       </main>
-    </>
-  );
+    );
+  }
 }
