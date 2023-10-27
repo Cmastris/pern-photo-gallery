@@ -20,6 +20,7 @@ export const routingConfig = [
       {
         path: "collections/:slug",
         element: <PhotoFeed />,
+        loader: photoFeedLoader,
       },
     ]
   },
