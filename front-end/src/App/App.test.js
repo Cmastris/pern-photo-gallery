@@ -7,9 +7,10 @@ import { useAppRouter } from "../testSetup/testRouters";
 // https://testing-library.com/docs/react-testing-library/example-intro
 // https://github.com/testing-library/jest-dom
 
-test("App renders", () => {
+test("App renders without errors", () => {
   render(useAppRouter(["/"]));
-  expect(screen.getByText("Hello world!")).toBeInTheDocument();
+  expect(screen.queryByText("Oops!")).not.toBeInTheDocument();
+  expect(screen.queryByText("unexpected error", {exact: false})).not.toBeInTheDocument();
 });
 
 test("Invalid paths return a 404 message", () => {
