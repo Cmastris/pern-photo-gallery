@@ -17,7 +17,7 @@ api.use(logging(
 
 // https://expressjs.com/en/resources/middleware/cors.html
 api.use(cors({
-  origin: "http://localhost:3000",  // Change in PROD
+  origin: "http://localhost",  // Change in PROD
 }));
 
 api.use("/collections", collectionsRouter);
