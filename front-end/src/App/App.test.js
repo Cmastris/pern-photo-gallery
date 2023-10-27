@@ -17,3 +17,8 @@ test("Invalid paths return a 404 message", () => {
   render(useAppRouter(["/does-not-exist"]));
   expect(screen.getByText("404 (Not Found)")).toBeInTheDocument();
 });
+
+test("PhotoFeed is rendered on the homepage", () => {
+  render(useAppRouter(["/"]));
+  expect(screen.getByText("Photography by Chris Mastris")).toBeInTheDocument();
+});
