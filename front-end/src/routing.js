@@ -17,6 +17,10 @@ export const routingConfig = [
         element: <PhotoFeed />,
         loader: photoFeedLoader,
       },
+      {
+        path: "collections/:slug",
+        element: <PhotoFeed />,
+      },
     ]
   },
 ];

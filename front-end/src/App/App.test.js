@@ -24,3 +24,9 @@ test("PhotoFeed is rendered on the homepage", async () => {
   const feedHeading = await screen.findByText("Photography by Chris Mastris");
   expect(feedHeading).toBeInTheDocument();
 });
+
+test("PhotoFeed is rendered on collection pages", async () => {
+  render(useAppRouter(["/collections/landscapes"]));
+  const feedHeading = await screen.findByText("Photography by Chris Mastris");
+  expect(feedHeading).toBeInTheDocument();
+});
