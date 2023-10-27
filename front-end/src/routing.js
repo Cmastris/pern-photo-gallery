@@ -5,10 +5,12 @@ import FallbackErrorPage from "./components/FallbackErrorPage/FallbackErrorPage"
 
 
 // https://reactrouter.com/en/main/routers/create-browser-router
-export const router = createBrowserRouter([
+export const routingConfig = [
   {
     path: "/",
     element: <App />,
     errorElement: <FallbackErrorPage />,
   },
-]);
+];
+
+export const router = createBrowserRouter(routingConfig);
