@@ -11,3 +11,8 @@ test("App renders", () => {
   render(useAppRouter(["/"]));
   expect(screen.getByText("Hello world!")).toBeInTheDocument();
 });
+
+test("Invalid paths return a 404 message", () => {
+  render(useAppRouter(["/does-not-exist"]));
+  expect(screen.getByText("404 (Not Found)")).toBeInTheDocument();
+});
