@@ -39,8 +39,8 @@ export async function photoFeedLoader({ params }) {
     // Fetch all photos data
     photosData = await fetchPhotos();
   }
-  console.log(collectionData);
-  console.log(photosData);
+  // console.log(collectionData);
+  // console.log(photosData);
   return { collectionData, photosData };
 }
 

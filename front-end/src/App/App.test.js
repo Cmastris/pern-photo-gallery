@@ -14,9 +14,15 @@ test("App renders without errors", () => {
   expect(screen.queryByText("unexpected error", {exact: false})).not.toBeInTheDocument();
 });
 
-test("Invalid paths return a 404 message", () => {
+test("Invalid unmatched paths return a 404 message", () => {
   render(useAppRouter(["/does-not-exist"]));
   expect(screen.getByText("404 (Not Found)")).toBeInTheDocument();
+});
+
+test("Invalid collection paths return a 404 message", async () => {
+  render(useAppRouter(["/collections/does-not-exist"]));
+  const notFoundHeading = await screen.findByText("404 (Not Found)");
+  expect(notFoundHeading).toBeInTheDocument();
 });
 
 test("PhotoFeed is rendered on the homepage", async () => {
