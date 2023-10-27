@@ -5,6 +5,7 @@ import { useAppRouter } from "../testSetup/testRouters";
 
 // https://testing-library.com/docs/react-testing-library/intro
 // https://testing-library.com/docs/react-testing-library/example-intro
+// https://testing-library.com/docs/guide-disappearance/#waiting-for-appearance
 // https://github.com/testing-library/jest-dom
 
 test("App renders without errors", () => {
@@ -18,7 +19,8 @@ test("Invalid paths return a 404 message", () => {
   expect(screen.getByText("404 (Not Found)")).toBeInTheDocument();
 });
 
-test("PhotoFeed is rendered on the homepage", () => {
+test("PhotoFeed is rendered on the homepage", async () => {
   render(useAppRouter(["/"]));
-  expect(screen.getByText("Photography by Chris Mastris")).toBeInTheDocument();
+  const feedHeading = await screen.findByText("Photography by Chris Mastris");
+  expect(feedHeading).toBeInTheDocument();
 });
