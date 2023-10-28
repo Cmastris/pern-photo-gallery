@@ -45,22 +45,22 @@ test("GET /photos JSON photo objects have the correct attributes", async () => {
 });
 
 
-test("GET /photos/:id with a valid ID returns a 200 status JSON response", async () => {
-  const res = await request(api).get("/photos/3");
+test("GET /photos/:slug with a valid slug returns a 200 status JSON response", async () => {
+  const res = await request(api).get("/photos/lake-bled-viewpoint-slovenia");
   expect(res.statusCode).toBe(200);
   expect(res.headers["content-type"]).toMatch(/json/);
 });
 
-test("GET /photos/:id JSON photo objects have the correct attributes", async () => {
-  const res = await request(api).get("/photos/3");
+test("GET /photos/:slug JSON photo objects have the correct attributes", async () => {
+  const res = await request(api).get("/photos/lake-bled-viewpoint-slovenia");
   const data = JSON.parse(res.text);
 
   const expectedAttributes = ["id", "title", "slug", "summary_text", "detail_text", "location", "date_taken", "filename"];
   expect(Object.keys(data)).toStrictEqual(expectedAttributes);
 });
 
-test("GET /photos/:id with a non-existent ID returns a 404 status code", async () => {
-  const res = await request(api).get("/photos/999");
+test("GET /photos/:slug with a non-existent slug returns a 404 status code", async () => {
+  const res = await request(api).get("/photos/does-not-exist");
   expect(res.statusCode).toBe(404);
 });
 

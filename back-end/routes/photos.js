@@ -12,11 +12,11 @@ router.get("", async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:slug', async (req, res) => {
   try {
-    photoData = await db.getPhotoById(req.params.id);
+    photoData = await db.getPhotoBySlug(req.params.slug);
     if (!photoData) {
-      return res.status(404).send(`A photo with the ID '${req.params.id}' does not exist.`);
+      return res.status(404).send(`A photo with the slug '${req.params.slug}' does not exist.`);
     }
     res.status(200).json(photoData);
   } catch(err) {

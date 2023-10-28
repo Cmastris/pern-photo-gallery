@@ -22,9 +22,9 @@ const getPhotos = async (collection_id=undefined) => {
   return res.rows;
 };
 
-const getPhotoById = async (id) => {
+const getPhotoBySlug = async (slug) => {
   const select = "SELECT id, title, slug, summary_text, detail_text, location, date_taken, filename FROM photos";
-  const res = await query(select + " WHERE id=$1", [id]);
+  const res = await query(select + " WHERE slug=$1", [slug]);
   return res.rows[0];
 };
 
@@ -45,7 +45,7 @@ const getPhotoCollections = async (photo_id) => {
 
 module.exports = {
   getPhotos,
-  getPhotoById,
+  getPhotoBySlug,
   getCollectionBySlug,
   getPhotoCollections,
 };
