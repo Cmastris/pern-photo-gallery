@@ -1,3 +1,6 @@
+import { useLoaderData } from "react-router-dom";
+
+
 export async function photoLoader({ params }) {
   // https://reactrouter.com/en/main/route/loader
   const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/photos/${params.slug}`);
@@ -9,14 +12,31 @@ export async function photoLoader({ params }) {
     throw new Error("Photo data could not be retrieved.");
   }
   const photoData = await res.json();
-  console.log(photoData);
   return photoData;
 }
 
 export function PhotoDetailPage() {
+  const { title, summary_text, detail_text, location, date_taken, filename } = useLoaderData();
+
+  function getMonthYearString(rawString) {
+    const options = { year: "numeric", month: "long"};
+    return new Date(rawString).toLocaleString("en-GB", options);
+  }
+
   return (
     <>
-      <h1>Photo Detail Page</h1>
+      <img
+          src={`/photo-images/large/${filename}`}
+          alt={title}
+          fetchpriority="high"
+      ></img>
+      <h1>{title}</h1>
+      <div>
+        <p>{location}</p>
+        <p>{getMonthYearString(date_taken)}</p>
+      </div>
+      <p>{summary_text}</p>
+      <p>{detail_text}</p>
     </>
   );
 }
