@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import PhotoFeedItem from "./PhotoFeedItem";
 
 
 async function fetchCollectionData(collectionSlug) {
@@ -50,6 +51,14 @@ export function PhotoFeed() {
 
   const { collectionData, photosData } = useLoaderData();
 
+  function renderFeedItems() {
+    if (photosData.length === 0) {
+      return <p>Sorry, no photos were found.</p>;
+    }
+    const feedItems = photosData.map(p => <PhotoFeedItem key={p.id} photoData={p} />);
+    return <div>{feedItems}</div>;
+  }
+
   return (
     <>
       <h1>{ collectionData ? collectionData.name : "Photography by Chris Mastris" }</h1>
@@ -59,6 +68,7 @@ export function PhotoFeed() {
         :
         "View my entire portfolio below or browse specific collections."
       }</p>
+      {renderFeedItems()}
     </>
   );
 }
