@@ -8,21 +8,13 @@ import { useAppRouter } from "../testSetup/testRouters";
 // https://testing-library.com/docs/guide-disappearance/#waiting-for-appearance
 // https://github.com/testing-library/jest-dom
 
+
+// Valid path routing
+
 test("App renders without errors", () => {
   render(useAppRouter(["/"]));
   expect(screen.queryByText("Oops!")).not.toBeInTheDocument();
   expect(screen.queryByText("unexpected error", {exact: false})).not.toBeInTheDocument();
-});
-
-test("Invalid unmatched paths return a 404 message", () => {
-  render(useAppRouter(["/does-not-exist"]));
-  expect(screen.getByText("404 (Not Found)")).toBeInTheDocument();
-});
-
-test("Invalid collection paths return a 404 message", async () => {
-  render(useAppRouter(["/collections/does-not-exist"]));
-  const notFoundHeading = await screen.findByText("404 (Not Found)");
-  expect(notFoundHeading).toBeInTheDocument();
 });
 
 test("PhotoFeed is rendered on the homepage", async () => {
@@ -41,4 +33,24 @@ test("PhotoDetailPage is rendered on photo detail pages", async () => {
   render(useAppRouter(["/photos/lake-bled-viewpoint-slovenia"]));
   const pageHeading = await screen.findByRole("heading", { name: "Photo Detail Page" });
   expect(pageHeading).toBeInTheDocument();
+});
+
+
+// Invalid path routing
+
+test("Invalid unmatched paths return a 404 message", () => {
+  render(useAppRouter(["/does-not-exist"]));
+  expect(screen.getByText("404 (Not Found)")).toBeInTheDocument();
+});
+
+test("Invalid collection paths return a 404 message", async () => {
+  render(useAppRouter(["/collections/does-not-exist"]));
+  const notFoundHeading = await screen.findByText("404 (Not Found)");
+  expect(notFoundHeading).toBeInTheDocument();
+});
+
+test("Invalid photo paths return a 404 message", async () => {
+  render(useAppRouter(["/photos/does-not-exist"]));
+  const notFoundHeading = await screen.findByText("404 (Not Found)");
+  expect(notFoundHeading).toBeInTheDocument();
 });
