@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "./App/App";
 import FallbackErrorPage from "./components/FallbackErrorPage/FallbackErrorPage";
+import PhotoDetailPage from "./features/photos/PhotoDetailPage";
 import { PhotoFeed, photoFeedLoader } from "./features/photos/PhotoFeed";
 
 
@@ -21,6 +22,10 @@ export const routingConfig = [
         path: "collections/:slug",
         element: <PhotoFeed />,
         loader: photoFeedLoader,
+      },
+      {
+        path: "photos/:slug",
+        element: <PhotoDetailPage />,
       },
     ]
   },

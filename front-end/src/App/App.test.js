@@ -36,3 +36,9 @@ test("PhotoFeed is rendered on collection pages", async () => {
   const feedHeading = await screen.findByRole("heading", { name: "Landscapes" });
   expect(feedHeading).toBeInTheDocument();
 });
+
+test("PhotoDetailPage is rendered on photo detail pages", async () => {
+  render(useAppRouter(["/photos/lake-bled-viewpoint-slovenia"]));
+  const pageHeading = await screen.findByRole("heading", { name: "Photo Detail Page" });
+  expect(pageHeading).toBeInTheDocument();
+});
