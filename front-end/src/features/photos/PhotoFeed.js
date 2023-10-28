@@ -55,7 +55,9 @@ export function PhotoFeed() {
     if (photosData.length === 0) {
       return <p>Sorry, no photos were found.</p>;
     }
-    const feedItems = photosData.map(p => <PhotoFeedItem key={p.id} photoData={p} />);
+    const feedItems = photosData.map((p, index) => {
+      return <PhotoFeedItem key={index} photoData={p} feedIndex={index} />;
+    });
     return <div>{feedItems}</div>;
   }
 
