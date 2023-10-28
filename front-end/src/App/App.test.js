@@ -27,12 +27,12 @@ test("Invalid collection paths return a 404 message", async () => {
 
 test("PhotoFeed is rendered on the homepage", async () => {
   render(useAppRouter(["/"]));
-  const feedHeading = await screen.findByText("Photography by Chris Mastris");
+  const feedHeading = await screen.findByRole("heading", { name: "Photography by Chris Mastris" });
   expect(feedHeading).toBeInTheDocument();
 });
 
 test("PhotoFeed is rendered on collection pages", async () => {
   render(useAppRouter(["/collections/landscapes"]));
-  const feedHeading = await screen.findByText("Photography by Chris Mastris");
+  const feedHeading = await screen.findByRole("heading", { name: "Landscapes" });
   expect(feedHeading).toBeInTheDocument();
 });

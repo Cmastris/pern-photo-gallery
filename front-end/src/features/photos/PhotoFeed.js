@@ -1,3 +1,6 @@
+import { useLoaderData } from "react-router-dom";
+
+
 async function fetchCollectionData(collectionSlug) {
   const fetchURL = `${process.env.REACT_APP_API_BASE_URL}/collections/${collectionSlug}`;
   const res = await fetch(fetchURL);
@@ -39,16 +42,23 @@ export async function photoFeedLoader({ params }) {
     // Fetch all photos data
     photosData = await fetchPhotos();
   }
-  // console.log(collectionData);
-  // console.log(photosData);
   return { collectionData, photosData };
 }
 
 
 export function PhotoFeed() {
+
+  const { collectionData, photosData } = useLoaderData();
+
   return (
     <>
-      <h1>Photography by Chris Mastris</h1>
+      <h1>{ collectionData ? collectionData.name : "Photography by Chris Mastris" }</h1>
+      <p>{
+        collectionData ?
+        collectionData.description
+        :
+        "View my entire portfolio below or browse specific collections."
+      }</p>
     </>
   );
 }
