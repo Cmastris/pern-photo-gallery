@@ -10,4 +10,5 @@ https://github.com/csstools/postcss-normalize */
 body, html {
   margin: 0;
   padding: 0;
+  font-family: 'Montserrat', sans-serif;
 }
