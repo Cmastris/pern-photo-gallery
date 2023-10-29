@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
-        <Link to="/" className={styles.logo}>Photo Gallery</Link>
+        <Link to="/" className={styles.logo}>Chris Mastris</Link>
       </div>
       <MainNav />
     </header>
