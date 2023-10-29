@@ -1,9 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 
 
-export async function photoLoader({ params }) {
-  // https://reactrouter.com/en/main/route/loader
-  const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/photos/${params.slug}`);
+async function fetchPhotoData(slug) {
+  const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/photos/${slug}`);
   if (!res.ok) {
     if (res.status === 404) {
       // https://reactrouter.com/en/main/route/error-element#throwing-manually
@@ -15,8 +14,37 @@ export async function photoLoader({ params }) {
   return photoData;
 }
 
+
+async function fetchPhotoCollectionsData(photoId) {
+  const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/collections?photo_id=${photoId}`);
+  if (!res.ok) {
+    throw new Error("Collections data could not be retrieved.");
+  }
+  const collectionsData = await res.json();
+  return collectionsData;
+}
+
+
+export async function photoLoader({ params }) {
+  // https://reactrouter.com/en/main/route/loader
+  const photoData = await fetchPhotoData(params.slug);
+  let relatedCollections = null;
+  try {
+    const collectionsData = await fetchPhotoCollectionsData(photoData.id);
+    if (collectionsData.length > 0) {
+      relatedCollections = collectionsData;
+    }
+    return { photoData, relatedCollections };
+  } catch(err) {
+    // Return `null` collections if fetch unsuccessful rather than rendering error page
+    return { photoData, relatedCollections };
+  }
+}
+
 export function PhotoDetailPage() {
-  const { title, summary_text, detail_text, location, date_taken, filename } = useLoaderData();
+  const { photoData, relatedCollections } = useLoaderData();
+  console.log(relatedCollections);
+  const { title, summary_text, detail_text, location, date_taken, filename } = photoData;
 
   function getMonthYearString(rawString) {
     const options = { year: "numeric", month: "long"};
