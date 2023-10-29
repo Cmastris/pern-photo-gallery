@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 0.5rem 0;
+}
+
+.logoContainer {
+  flex-grow: 1;
+  align-self: center;
+  padding: 1.5rem 2.5%;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+
+@media screen and (max-width: 850px) {
+  .header {
+    flex-direction: column;
+  }
+}
