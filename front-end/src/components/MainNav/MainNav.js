@@ -10,6 +10,9 @@ export default function MainNav() {
         <NavLink
         to={path}
         className={styles.link}
+        style={({ isActive }) => (isActive ? { color: "black", fontWeight: "600" } : null)}
+        data-text={anchor}
+        end
         >{anchor}</NavLink>
       </li>
     );

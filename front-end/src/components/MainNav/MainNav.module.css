@@ -18,6 +18,47 @@
   margin: 1em 1.2em;
 }
 
+.link,
+.link:link {
+  /* Prevent layout shift when bolding on hover; see `.link::after` below */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: rgb(100, 100, 100);
+  text-decoration: none;
+}
+
+.link:focus,
+.link:hover {
+  color: rgb(25, 25, 25);
+  font-weight: 600;
+  transition: color 0.4s;
+}
+
+.link:active {
+  color: rgb(150, 150, 150);
+}
+
+.link::after {
+  /* Prevent layout shift when bolding on hover
+  https://css-tricks.com/bold-on-hover-without-the-layout-shift/ */
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 600;
+}
+
+@media speech {
+  .link::after {
+    display: none;
+  }
+}
+
 
 @media screen and (max-width: 1200px) {
   .mainNav {
