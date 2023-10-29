@@ -17,9 +17,21 @@ test("App renders without errors", () => {
   expect(screen.queryByText("unexpected error", {exact: false})).not.toBeInTheDocument();
 });
 
+test("Header is rendered on the homepage", async () => {
+  render(useAppRouter(["/"]));
+  const feedHeading = await screen.findByRole("link", { name: "Chris Mastris" });
+  expect(feedHeading).toBeInTheDocument();
+});
+
 test("PhotoFeed is rendered on the homepage", async () => {
   render(useAppRouter(["/"]));
   const feedHeading = await screen.findByRole("heading", { name: "Photography by Chris Mastris" });
+  expect(feedHeading).toBeInTheDocument();
+});
+
+test("Header is rendered on collection pages", async () => {
+  render(useAppRouter(["/collections/landscapes"]));
+  const feedHeading = await screen.findByRole("link", { name: "Chris Mastris" });
   expect(feedHeading).toBeInTheDocument();
 });
 
