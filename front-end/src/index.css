@@ -10,5 +10,6 @@ https://github.com/csstools/postcss-normalize */
 body, html {
   margin: 0;
   padding: 0;
+  color: rgb(45, 45, 45);
   font-family: 'Montserrat', sans-serif;
 }
