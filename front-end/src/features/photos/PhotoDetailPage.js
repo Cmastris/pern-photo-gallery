@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 
 async function fetchPhotoData(slug) {
@@ -43,12 +43,30 @@ export async function photoLoader({ params }) {
 
 export function PhotoDetailPage() {
   const { photoData, relatedCollections } = useLoaderData();
-  console.log(relatedCollections);
   const { title, summary_text, detail_text, location, date_taken, filename } = photoData;
 
   function getMonthYearString(rawString) {
     const options = { year: "numeric", month: "long"};
     return new Date(rawString).toLocaleString("en-GB", options);
+  }
+
+  function renderRelatedCollections() {
+    const links = relatedCollections.map((c, index) => {
+      return (
+        <li key={index}>
+          <Link to={`/collections/${c.slug}`}>{c.name}</Link>
+        </li>
+      );
+    });
+    
+    return (
+      <>
+        <h2>Explore Related Collections</h2>
+        <ul>
+          {links}
+        </ul>
+      </>
+    );
   }
 
   return (
@@ -65,6 +83,7 @@ export function PhotoDetailPage() {
       </div>
       <p>{summary_text}</p>
       <p>{detail_text}</p>
+      {relatedCollections ? renderRelatedCollections() : null}
     </>
   );
 }
