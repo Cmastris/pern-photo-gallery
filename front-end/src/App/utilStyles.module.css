@@ -17,6 +17,22 @@
 }
 
 
+/* ===== Typography ===== */
+
+.h1 {
+  color: rgb(0, 0, 0);
+  font-size: 3rem;
+  font-weight: 200;
+}
+
+@media screen and (max-width: 900px) {
+  .h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+  }
+}
+
+
 /* ===== Buttons & Links ===== */
 
 .btn,
