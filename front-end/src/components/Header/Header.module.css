@@ -10,7 +10,7 @@
 .logoContainer {
   flex-grow: 1;
   align-self: center;
-  padding: 1.5rem 2.5%;
+  padding: 1.5rem 5%;
 }
 
 .logo {
@@ -20,7 +20,7 @@
 }
 
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
   .header {
     flex-direction: column;
   }
