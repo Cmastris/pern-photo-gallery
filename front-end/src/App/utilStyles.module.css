@@ -1,0 +1,17 @@
+/* ===== Page Layout & Spacing ===== */
+
+.pagePadding {
+  padding: 0 12.5% 4rem 12.5%;
+}
+
+@media screen and (max-width: 1400px) {
+  .pagePadding {
+    padding: 0 5% 4rem 5%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .pagePadding {
+    padding: 0 2.5% 4rem 2.5%;
+  }
+}
