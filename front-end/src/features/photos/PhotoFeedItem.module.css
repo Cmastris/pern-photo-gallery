@@ -1,0 +1,19 @@
+.image {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  /* Pop out effect on hover */
+  .image {
+    left: 0;
+    bottom: 0;
+  }
+
+  .image:hover {
+    position: relative;
+    left: 6px;
+    bottom: 6px;
+    box-shadow: -6px 6px 4px rgb(200, 200, 200);
+    transition: all 0.25s;
+  }
+}

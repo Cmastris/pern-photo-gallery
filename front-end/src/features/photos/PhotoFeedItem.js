@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import styles from "./PhotoFeedItem.module.css";
 
 export default function PhotoFeedItem({ photoData, feedIndex }) {
 
@@ -14,6 +14,7 @@ export default function PhotoFeedItem({ photoData, feedIndex }) {
           alt={title}
           fetchpriority={feedIndex < 2 ? "high" : null}
           loading={feedIndex > 3 ? "lazy" : null}
+          className={styles.image}
         ></img>
       </Link>
     </article>
