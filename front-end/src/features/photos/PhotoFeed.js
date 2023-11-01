@@ -1,5 +1,8 @@
 import { useLoaderData } from "react-router-dom";
+
 import PhotoFeedItem from "./PhotoFeedItem";
+import styles from "./PhotoFeed.module.css";
+import utilStyles from "../../App/utilStyles.module.css";
 
 
 async function fetchCollectionData(collectionSlug) {
@@ -58,12 +61,12 @@ export function PhotoFeed() {
     const feedItems = photosData.map((p, index) => {
       return <PhotoFeedItem key={index} photoData={p} feedIndex={index} />;
     });
-    return <div>{feedItems}</div>;
+    return <div className={styles.photoGrid}>{feedItems}</div>;
   }
 
   return (
-    <>
-      <h1>{ collectionData ? collectionData.name : "Photography by Chris Mastris" }</h1>
+    <div className={`${utilStyles.pagePadding} ${utilStyles.textCenter}`}>
+      <h1 className={utilStyles.h1}>{ collectionData ? collectionData.name : "Photography by Chris Mastris" }</h1>
       <p>{
         collectionData ?
         collectionData.description
@@ -71,6 +74,6 @@ export function PhotoFeed() {
         "View my entire portfolio below or browse specific collections."
       }</p>
       {renderFeedItems()}
-    </>
+    </div>
   );
 }
