@@ -44,6 +44,8 @@ export async function photoLoader({ params }) {
 export function PhotoDetailPage() {
   const { photoData, relatedCollections } = useLoaderData();
   const { title, summary_text, detail_text, location, date_taken, filename } = photoData;
+  const largeFilePath = `/photo-images/large/${filename}`;
+  const smallFilePath = `/photo-images/small/${filename}`;
 
   function getMonthYearString(rawString) {
     const options = { year: "numeric", month: "long"};
@@ -72,9 +74,10 @@ export function PhotoDetailPage() {
   return (
     <>
       <img
-          src={`/photo-images/large/${filename}`}
-          alt={title}
           fetchpriority="high"
+          src={largeFilePath}
+          srcSet={`${largeFilePath} 1500w, ${smallFilePath} 600w`}
+          alt={title}
       ></img>
       <h1>{title}</h1>
       <div>
