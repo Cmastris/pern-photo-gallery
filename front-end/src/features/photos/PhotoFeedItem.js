@@ -14,6 +14,8 @@ export default function PhotoFeedItem({ photoData, feedIndex }) {
           alt={title}
           fetchpriority={feedIndex < 2 ? "high" : null}
           loading={feedIndex > 3 ? "lazy" : null}
+          height="400"
+          width="600"
           className={styles.image}
         ></img>
       </Link>

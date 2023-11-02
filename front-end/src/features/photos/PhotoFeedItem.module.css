@@ -1,5 +1,9 @@
 .image {
-  max-width: 100%;
+  /* https://web.dev/articles/aspect-ratio#example_preventing_layout_shift */
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  aspect-ratio: 6 / 4;
 }
 
 @media screen and (min-width: 1000px) {
