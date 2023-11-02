@@ -10,8 +10,13 @@
   }
 }
 
+.pagePaddingNarrow {
+  padding: 0 15% 4rem 15%;
+}
+
 @media screen and (max-width: 900px) {
-  .pagePadding {
+  .pagePadding,
+  .pagePaddingNarrow {
     padding: 0 2.5% 4rem 2.5%;
   }
 }
