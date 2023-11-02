@@ -1,6 +1,9 @@
 import { MdOutlineLocationOn, MdOutlineToday } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
 
+import styles from "./PhotoDetailPage.module.css";
+import utilStyles from "../../App/utilStyles.module.css";
+
 
 async function fetchPhotoData(slug) {
   const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/photos/${slug}`);
@@ -57,43 +60,51 @@ export function PhotoDetailPage() {
     const links = relatedCollections.map((c, index) => {
       return (
         <li key={index}>
-          <Link to={`/collections/${c.slug}`}>{c.name}</Link>
+          <Link
+            to={`/collections/${c.slug}`}
+            className={`${utilStyles.btn} ${styles.collectionLink}`}
+          >{c.name}</Link>
         </li>
       );
     });
     
     return (
-      <>
-        <h2>Explore Related Collections</h2>
-        <ul>
+      <section>
+        <h2 className={utilStyles.h2}>Explore Related Collections</h2>
+        <ul className={styles.relatedCollections}>
           {links}
         </ul>
-      </>
+      </section>
     );
   }
 
   return (
-    <>
+    <div className={`${utilStyles.pagePaddingNarrow} ${utilStyles.textCenter}`}>
       <img
           fetchpriority="high"
           src={largeFilePath}
           srcSet={`${largeFilePath} 1500w, ${smallFilePath} 600w`}
           alt={title}
+          height="1000"
+          width="1500"
+          className={styles.image}
       ></img>
-      <h1>{title}</h1>
-      <div>
-        <div>
-          <MdOutlineLocationOn />
+      <h1 className={utilStyles.h1}>{title}</h1>
+      <div className={styles.keyDetails}>
+        <div className={styles.detailItem}>
+          <MdOutlineLocationOn size={24} className={styles.locationIcon} />
           <span>{location}</span>
         </div>
-        <div>
-          <MdOutlineToday />
+        <div className={styles.detailItem}>
+          <MdOutlineToday size={24} className={styles.calendarIcon} />
           <span>{getMonthYearString(date_taken)}</span>
         </div>
       </div>
-      <p>{summary_text}</p>
-      <p>{detail_text}</p>
+      <div className={styles.description}>
+        <p className={utilStyles.mb2rem}>{summary_text}</p>
+        <p>{detail_text}</p>
+      </div>
       {relatedCollections ? renderRelatedCollections() : null}
-    </>
+    </div>
   );
 }
