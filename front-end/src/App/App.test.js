@@ -8,6 +8,11 @@ import { useAppRouter } from "../testSetup/testRouters";
 // https://testing-library.com/docs/guide-disappearance/#waiting-for-appearance
 // https://github.com/testing-library/jest-dom
 
+// Ignore errors caused by scroll to top functionality
+window.scrollTo = jest.fn();
+afterAll(() => {
+  jest.clearAllMocks();
+});
 
 // Valid path routing
 

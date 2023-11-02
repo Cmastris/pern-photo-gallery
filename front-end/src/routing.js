@@ -4,13 +4,19 @@ import App from "./App/App";
 import FallbackErrorPage from "./components/FallbackErrorPage/FallbackErrorPage";
 import { PhotoDetailPage, photoLoader } from "./features/photos/PhotoDetailPage";
 import { PhotoFeed, photoFeedLoader } from "./features/photos/PhotoFeed";
+import ScrollToTop from "./App/ScrollToTop";
 
 
 // https://reactrouter.com/en/main/routers/create-browser-router
 export const routingConfig = [
   {
     path: "/",
-    element: <App />,
+    element: (
+      <>
+        <ScrollToTop />
+        <App />
+      </>
+    ),
     errorElement: <FallbackErrorPage />,
     children: [
       {
