@@ -1,3 +1,4 @@
+import { MdOutlineLocationOn, MdOutlineToday } from "react-icons/md";
 import { Link, useLoaderData } from "react-router-dom";
 
 
@@ -81,8 +82,14 @@ export function PhotoDetailPage() {
       ></img>
       <h1>{title}</h1>
       <div>
-        <p>{location}</p>
-        <p>{getMonthYearString(date_taken)}</p>
+        <div>
+          <MdOutlineLocationOn />
+          <span>{location}</span>
+        </div>
+        <div>
+          <MdOutlineToday />
+          <span>{getMonthYearString(date_taken)}</span>
+        </div>
       </div>
       <p>{summary_text}</p>
       <p>{detail_text}</p>
