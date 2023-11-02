@@ -10,7 +10,7 @@ export default function PhotoFeedItem({ photoData, feedIndex }) {
       <Link to={`/photos/${slug}`}>
         {/* Prioritise loading of first 2 images and lazily load images beyond the first 4 */}
         <img
-          src={`/photo-images/preview/${filename}`}
+          src={`/photo-images/small/${filename}`}
           alt={title}
           fetchpriority={feedIndex < 2 ? "high" : null}
           loading={feedIndex > 3 ? "lazy" : null}
