@@ -16,9 +16,10 @@ api.use(logging(
 ));
 
 // https://expressjs.com/en/resources/middleware/cors.html
-api.use(cors({
-origin: ["http://localhost", /http:\/\/localhost:.*/],  // Change in PROD
-}));
+const devOrigin = ["http://localhost", /http:\/\/localhost:.*/];
+const prodOrigin = process.env.PROD_FRONT_END_BASE_URL;
+const origin = process.env.NODE_ENV !== "production" ? devOrigin : prodOrigin;
+api.use(cors({ origin }));
 
 api.use("/collections", collectionsRouter);
 api.use("/photos", photosRouter);
