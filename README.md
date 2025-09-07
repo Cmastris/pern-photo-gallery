@@ -1,7 +1,7 @@
 # PERN Photo Gallery <!-- omit in toc -->
 A photo gallery website that uses the PERN (PostgreSQL, Express, React, Node) stack. React Router is also used for front-end routing.
 
-Take a look: https://pern-photo-gallery.onrender.com/.
+**Please note:** this was developed as a practice project in 2023 and is no longer maintained. The repository remains publicly accessible as part of my development portfolio, but it may now be affected by broken functionality and/or potential security issues.
 
 
 ## Contents <!-- omit in toc -->
@@ -16,7 +16,6 @@ Take a look: https://pern-photo-gallery.onrender.com/.
   - [Front end](#front-end)
 - [Setup](#setup)
 - [FAQs](#faqs)
-  - [Can I see an example?](#can-i-see-an-example)
   - [Why did you build this?](#why-did-you-build-this)
   - [Is this project in active development?](#is-this-project-in-active-development)
 
@@ -95,10 +94,6 @@ The database structure is documented via a [Database Markup Language file](/back
 
 ## FAQs
 
-### Can I see an example?
-Yes! A production version of the website can be found here: https://pern-photo-gallery.onrender.com/.
-
-
 ### Why did you build this?
 This is one of the practice projects that I completed as part of the Codecademy Full-Stack Engineer career path. I planned and built it independently; the only requirement was to build an application using the PERN stack.
 
@@ -110,4 +105,4 @@ I now have more experience with:
 
 
 ### Is this project in active development?
-I'm not currently working on further improvements/features.
+No; this was developed as a practice project in 2023 and is no longer maintained. The repository remains publicly accessible as part of my development portfolio, but it may now be affected by broken functionality and/or potential security issues.
